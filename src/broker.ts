@@ -2,6 +2,7 @@ export interface Message {
     type: string
 }
 
+// TODO: type -> topic? topic outside of message?
 // TODO: introduce a more sophisticated Broker with subject matching.
 
 export type Subscriber = (message: Message) => void
@@ -23,7 +24,7 @@ export class Broker {
         this.subscribersByMessageType.set(messageType, subscribers)
     }
 
-    public next(message: Message) { // TODO: Consider publish.
+    public publish(message: Message) {
         const subscribers = this.subscribersByMessageType.get(message.type)
         if (!subscribers) {
             return
