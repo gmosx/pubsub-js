@@ -1,15 +1,17 @@
 {
-  "name": "broker",
-  "version": "1.0.0",
-  "description": "A message broker for web applications.",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "broker",
-    "flux"
-  ],
-  "author": "George Moschovitis <gmosx@reizu.com>",
-  "license": "MIT"
+    "name": "pubsub",
+    "version": "1.0.0",
+    "description": "Publish-Subscribe messaging for Web applications.",
+    "main": "dist/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "pubsub",
+        "messaging",
+        "broker",
+        "flux"
+    ],
+    "author": "George Moschovitis <gmosx@reizu.com>",
+    "license": "MIT"
 }

@@ -1,7 +1,9 @@
-# Broker
+# PubSub
 
-A message broker for Web applications.
+Publish-Subscribe messaging for Web applications.
 
 ## FAQ
 
-* Why doesn't `broker` use Observables, Subjects, Subscriptions, etc (e.g. RxJS) ?
+## Why doesn't `pubsub` use Observables, Subjects, Subscriptions, etc (e.g. RxJS)
+
+## Why use `pubsub` over `redux`
