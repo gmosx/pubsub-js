@@ -1,22 +1,22 @@
 /** Broker mediates messages between publishers and subscribers. */
 class Broker {
     constructor() {
-        this.subscribersByMessageType = new Map();
+        this.subscribersByTopic = new Map();
     }
-    subscribe(messageType, subscriber) {
-        const subscribers = this.subscribersByMessageType.get(messageType) || [];
+    subscribe(topic, subscriber) {
+        const subscribers = this.subscribersByTopic.get(topic) || [];
         subscribers.push(subscriber);
-        this.subscribersByMessageType.set(messageType, subscribers);
+        this.subscribersByTopic.set(topic, subscribers);
     }
-    unsubscribe(messageType, subscriber) {
-        const subscribers = this.subscribersByMessageType.get(messageType) || [];
+    unsubscribe(topic, subscriber) {
+        const subscribers = this.subscribersByTopic.get(topic) || [];
         const index = subscribers.indexOf(subscriber);
         if (index > 0)
             subscribers.splice(index, 1);
-        this.subscribersByMessageType.set(messageType, subscribers);
+        this.subscribersByTopic.set(topic, subscribers);
     }
     publish(message) {
-        const subscribers = this.subscribersByMessageType.get(message.type);
+        const subscribers = this.subscribersByTopic.get(message.topic);
         if (!subscribers) {
             return;
         }

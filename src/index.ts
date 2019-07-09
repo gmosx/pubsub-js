@@ -1,31 +1,32 @@
 export interface Message {
-    type: string
+    topic: string
 }
 
 // TODO: type -> topic? topic outside of message?
 // TODO: introduce a more sophisticated Broker with subject matching.
 
-export type Subscriber = (message: Message) => void
+// export type Subscriber = <M extends Message>(message: M) => void
+export type Subscriber = (message: any) => void
 
 /** Broker mediates messages between publishers and subscribers. */
 export class Broker {
-    private subscribersByMessageType = new Map<string, Subscriber[]>()
+    private subscribersByTopic = new Map<string, Subscriber[]>()
 
-    public subscribe(messageType: string, subscriber: Subscriber) {
-        const subscribers = this.subscribersByMessageType.get(messageType) || []
+    public subscribe(topic: string, subscriber: Subscriber) {
+        const subscribers = this.subscribersByTopic.get(topic) || []
         subscribers.push(subscriber)
-        this.subscribersByMessageType.set(messageType, subscribers)
+        this.subscribersByTopic.set(topic, subscribers)
     }
 
-    public unsubscribe(messageType: string, subscriber: Subscriber) {
-        const subscribers = this.subscribersByMessageType.get(messageType) || []
+    public unsubscribe(topic: string, subscriber: Subscriber) {
+        const subscribers = this.subscribersByTopic.get(topic) || []
         const index = subscribers.indexOf(subscriber)
         if (index > 0) subscribers.splice(index, 1)
-        this.subscribersByMessageType.set(messageType, subscribers)
+        this.subscribersByTopic.set(topic, subscribers)
     }
 
-    public publish(message: Message) {
-        const subscribers = this.subscribersByMessageType.get(message.type)
+    public publish<M extends Message>(message: M) {
+        const subscribers = this.subscribersByTopic.get(message.topic)
         if (!subscribers) {
             return
         }

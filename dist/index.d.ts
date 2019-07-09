@@ -1,11 +1,11 @@
 export interface Message {
-    type: string;
+    topic: string;
 }
-export declare type Subscriber = (message: Message) => void;
+export declare type Subscriber = (message: any) => void;
 /** Broker mediates messages between publishers and subscribers. */
 export declare class Broker {
-    private subscribersByMessageType;
-    subscribe(messageType: string, subscriber: Subscriber): void;
-    unsubscribe(messageType: string, subscriber: Subscriber): void;
-    publish(message: Message): void;
+    private subscribersByTopic;
+    subscribe(topic: string, subscriber: Subscriber): void;
+    unsubscribe(topic: string, subscriber: Subscriber): void;
+    publish<M extends Message>(message: M): void;
 }
