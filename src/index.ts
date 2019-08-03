@@ -2,7 +2,6 @@ export interface Message {
     topic: string
 }
 
-// TODO: type -> topic? topic outside of message?
 // TODO: introduce a more sophisticated Broker with subject matching.
 
 // export type Subscriber = <M extends Message>(message: M) => void

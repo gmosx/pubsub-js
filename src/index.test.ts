@@ -1,23 +1,25 @@
 import { Broker, Message } from "./index";
 
+const testCommandTopic = "testCommand"
+
 interface TestCommand extends Message {
     value: number
 }
 
-const makeTestCommand = (value: number): TestCommand => {
-    return { topic: "test", value }
+const testCommand = (value: number): TestCommand => {
+    return { topic: testCommandTopic, value }
 }
 
 test("publish should forward messages to subscribers", () => {
     const broker = new Broker()
-    const subscriber = (message: TestCommand) => {
-        expect(message.value).toBe(1)
+    const handleTestCommand = (command: TestCommand) => {
+        expect(command.value).toBe(1)
     }
-    broker.subscribe("test", subscriber)
-    broker.publish(makeTestCommand(1))
+    broker.subscribe(testCommandTopic, handleTestCommand)
+    broker.publish(testCommand(1))
 })
 
 test("publish should accept messages even when there are no subscribers", () => {
     const broker = new Broker()
-    broker.publish({ topic: "test", value: 1 })
+    broker.publish(testCommand(1))
 })
