@@ -4,7 +4,7 @@ Publish-Subscribe messaging for Web applications.
 
 ## Description
 
-`Pubsub` implements a 'uni-directional` message broker, in the spirit of the [Flux Application Architecture](https://facebook.github.io/flux/). Unlike `Flux`, `pubsub` solves only one problem, messaging, while leaving state management to the user. Moreover, `pubsub` supports fine-grained subscription of listeners to specific topics.
+`Pubsub` implements a 'uni-directional' message broker, in the spirit of the [Flux Application Architecture](https://facebook.github.io/flux/). Unlike `Flux`, `pubsub` solves only one problem, messaging, while leaving state management to the user. Moreover, `pubsub` supports fine-grained subscription of listeners to specific topics.
 
 While `pubsub` is agnostic to the nature and payload of the messages that flow through the broker, the user is encouraged to differentiate between two different kinds of messages:
 
