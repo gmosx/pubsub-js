@@ -1,15 +1,5 @@
 import { Broker, Message } from "./index";
 
-// const testCommandTopic = "TestCommand"
-
-// interface TestCommand extends Message {
-//     value: number
-// }
-
-// const testCommand = (value: number): TestCommand => {
-//     return { topic: testCommandTopic, value }
-// }
-
 class TestCommand implements Message {
     static topic = "TestCommand"
     public topic = TestCommand.topic

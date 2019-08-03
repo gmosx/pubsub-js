@@ -2,10 +2,6 @@ export interface Message {
     topic: string
 }
 
-// TODO: rename Broker to Bus?
-// TODO: introduce a more sophisticated Broker with subject matching.
-
-// export type Subscriber = <M extends Message>(message: M) => void
 export type Subscriber = (message: any) => void
 
 /** Broker mediates messages between publishers and subscribers. */
