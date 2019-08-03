@@ -11,10 +11,12 @@ While `pubsub` is agnostic to the nature and payload of the messages that flow t
 * Command - the message will trigger a state mutation
 * Event - the message acknowledges a state transition
 
+By convention, Command message names are imperative, e.g. `DeleteCommentCommand`, `SignInCommand`, etc. Event message names, on the other hand, are in the past tense, e.g. `CommentDeletedEvent`, `SignedInEvent`, etc.
+
 ## Example
 
 ```ts
-const removeCommentCommandTopic = "deleteComment"
+const removeCommentCommandTopic = "RemoveCommentCommand"
 
 interface RemoveCommentCommand extends Message {
     commentID: number
@@ -31,6 +33,7 @@ broker.publish(removeCommentCommand(1))
 
 const handleRemoveCommentCommand = (command: RemoveCommentCommand) => {
     commentStore.remove(command.commentID)
+    // broker.publish(commentStoreChangedEvent(commentStore)) 
 }
 ```
 

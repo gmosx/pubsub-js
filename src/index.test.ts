@@ -1,6 +1,6 @@
 import { Broker, Message } from "./index";
 
-const testCommandTopic = "testCommand"
+const testCommandTopic = "TestCommand"
 
 interface TestCommand extends Message {
     value: number
