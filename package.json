@@ -1,5 +1,5 @@
 {
-    "name": "pubsub",
+    "name": "@reizu/pubsub",
     "version": "1.0.0",
     "description": "Publish-Subscribe messaging for Web applications.",
     "main": "dist/index.js",

@@ -54,3 +54,17 @@ We prefer to keep `pubsub` simple and lean, while avoiding npm dependency hell.
 Similar to `Flux`, `Redux` intertwines messaging and state management. Moreover, in the author's opinion, it's significantly more complicated and promotes the usage of functional programming patterns that are not fit (or required) in typical JavaScript front-end development. Finally, `Redux` doesn't play well with TypeScript typings.
 
 Instead, `pubsub` offers a simple solution to a specific problem.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate.
+
+## Contact
+
+[@gmosx](https://twitter.com/gmosx) on Twitter.
+
+## License
+
+MIT, see [LICENSE](./LICENSE) file for details.
+
+Copyright © 2019 George Moschovitis.
