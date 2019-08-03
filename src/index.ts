@@ -4,14 +4,19 @@ export interface Message {
 
 export type Subscriber = (message: any) => void
 
+export type UnsubscribeFunction = () => void
+
 /** Broker mediates messages between publishers and subscribers. */
 export class Broker {
     private subscribersByTopic = new Map<string, Subscriber[]>()
 
-    public subscribe(topic: string, subscriber: Subscriber) {
+    public subscribe(topic: string, subscriber: Subscriber): UnsubscribeFunction {
         const subscribers = this.subscribersByTopic.get(topic) || []
         subscribers.push(subscriber)
         this.subscribersByTopic.set(topic, subscribers)
+        return () => {
+            this.unsubscribe(topic, subscriber)
+        }
     }
 
     public unsubscribe(topic: string, subscriber: Subscriber) {
