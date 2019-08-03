@@ -24,6 +24,7 @@ test("publish should forward messages to subscribers", () => {
     }
     broker.subscribe(TestCommand.topic, handleTestCommand)
     broker.publish(new TestCommand(1))
+    broker.unsubscribe(TestCommand.topic, handleTestCommand)
 })
 
 test("publish should accept messages even when there are no subscribers", () => {

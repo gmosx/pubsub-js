@@ -20,9 +20,8 @@ export class Broker {
 
     public unsubscribe(topic: string, subscriber: Subscriber) {
         const subscribers = this.subscribersByTopic.get(topic) || []
-        const index = subscribers.indexOf(subscriber)
-        if (index > 0) subscribers.splice(index, 1)
-        this.subscribersByTopic.set(topic, subscribers)
+        const filteredSubscribers = subscribers.filter(s => s != subscriber)
+        this.subscribersByTopic.set(topic, filteredSubscribers)
     }
 
     public publish<M extends Message>(message: M) {
