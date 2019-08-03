@@ -12,8 +12,8 @@ const testCommand = (value: number): TestCommand => {
 
 test("publish should forward messages to subscribers", () => {
     const broker = new Broker()
-    const handleTestCommand = (command: TestCommand) => {
-        expect(command.value).toBe(1)
+    const handleTestCommand = ({ value }: TestCommand) => {
+        expect(value).toBe(1)
     }
     broker.subscribe(testCommandTopic, handleTestCommand)
     broker.publish(testCommand(1))

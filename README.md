@@ -20,7 +20,7 @@ interface RemoveCommentCommand extends Message {
     commentID: number
 }
 
-const makeRemoveCommentCommand = (commentID: number): RemoveCommentCommand => {
+const removeCommentCommand = (commentID: number): RemoveCommentCommand => {
     return { topic: removeCommentCommandTopic, commentID }
 }
 
