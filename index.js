@@ -1,6 +1,7 @@
 /**
- * @typedef {import("./index.js").Subscriber} Subscriber
- * @typedef {import("./index.js").UnsubscribeFunction} UnsubscribeFunction
+ * @typedef {import("./types.d.ts").Message} Message
+ * @typedef {import("./types.d.ts").Subscriber} Subscriber
+ * @typedef {import("./types.d.ts").UnsubscribeFunction} UnsubscribeFunction
  */
 
 // #TODO consider message buffering.
@@ -45,7 +46,7 @@ export class Broker {
     }
 
     /**
-     * @template {M extends Message}
+     * @template {Message} M
      * @param {M} message
      */
     publish(message) {
