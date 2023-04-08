@@ -24,12 +24,12 @@ Deno.test("publish should forward messages to subscribers", () => {
     const handleTestCommand = ({ value }) => {
         assertEquals(value, 1);
     }
-    broker.subscribe(TestCommand.topic, handleTestCommand)
-    broker.publish(new TestCommand(1))
-    broker.unsubscribe(TestCommand.topic, handleTestCommand)
+    const unsubscribe = broker.subscribe(TestCommand.topic, handleTestCommand);
+    broker.publish(new TestCommand(1));
+    unsubscribe();
 })
 
 Deno.test("publish should accept messages even when there are no subscribers", () => {
-    const broker = new Broker()
-    broker.publish(new TestCommand(1))
+    const broker = new Broker();
+    broker.publish(new TestCommand(1));
 })

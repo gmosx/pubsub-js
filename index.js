@@ -3,6 +3,9 @@
  * @typedef {import("./index.js").UnsubscribeFunction} UnsubscribeFunction
  */
 
+// #TODO consider message buffering.
+// #TODO consider generator* method: const topic = broker.subscribe("example-topic");
+
 /**
  * Broker mediates messages between publishers and subscribers.
  */
