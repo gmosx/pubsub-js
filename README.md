@@ -37,7 +37,7 @@ broker.publish(new RemoveCommentCommand(1))
 
 const handleRemoveCommentCommand = (command: RemoveCommentCommand) => {
     commentStore.remove(command.commentID)
-    broker.publish(new CommentStoreChangedEvent(commentStore)) 
+    broker.publish(new CommentStoreChangedEvent(commentStore))
 }
 
 broker.unsubscribe(RemoveCommentCommand.topic, handleRemoveCommentCommand)
@@ -67,4 +67,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 MIT, see [LICENSE](./LICENSE) file for details.
 
-Copyright © 2019 George Moschovitis.
+Copyright © 2019-2023 George Moschovitis.
