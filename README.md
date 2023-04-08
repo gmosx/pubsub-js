@@ -16,31 +16,43 @@ By convention, Command message names are imperative, e.g. `DeleteCommentCommand`
 ## Example
 
 ```ts
-class RemoveCommentCommand implements Message {
+class RemoveCommentCommand {
     static topic = "RemoveCommentCommand"
-    public topic = RemoveCommentCommand.topic
-    constructor(public commentID: number) {
+    topic = RemoveCommentCommand.topic
+
+    /** @type {string} */
+    commentID;
+
+    /** @param {string} commentID */
+    constructor(commentID) {
+        this.commentID = commentID;
     }
 }
 
-class CommentStoreChangedEvent implements Message {
+class CommentStoreChangedEvent {
     static topic = "CommentStoreChangedEvent"
-    public topic = CommentStoreChangedEvent.topic
-    constructor(public commentStore: CommentStore) {
+    topic = CommentStoreChangedEvent.topic
+
+    /** @type {CommentStore} */
+    commentStore;
+
+    /** @param {CommentStore} commentStore */
+    constructor(commentStore) {
+        this.commentStore = commentStore;
     }
 }
 
 const broker = new Broker()
 
-broker.subscribe(RemoveCommentCommand.topic, handleRemoveCommentCommand)
-broker.publish(new RemoveCommentCommand(1))
+const unsubscribe = broker.subscribe(RemoveCommentCommand.topic, handleRemoveCommentCommand);
+broker.publish(new RemoveCommentCommand(1));
 
 const handleRemoveCommentCommand = (command: RemoveCommentCommand) => {
-    commentStore.remove(command.commentID)
-    broker.publish(new CommentStoreChangedEvent(commentStore))
+    commentStore.remove(command.commentID);
+    broker.publish(new CommentStoreChangedEvent(commentStore));
 }
 
-broker.unsubscribe(RemoveCommentCommand.topic, handleRemoveCommentCommand)
+unsubscribe(RemoveCommentCommand.topic, handleRemoveCommentCommand);
 ```
 
 ## FAQ
